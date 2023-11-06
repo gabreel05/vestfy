@@ -37,7 +37,6 @@ export default function DashboardPage() {
           query(collection(db, 'enterprises'), where('id', '==', uid)),
           snapshot => {
             const data = snapshot.docs.map(doc => ({
-              id: doc.id,
               ...doc.data(),
             }))
 
