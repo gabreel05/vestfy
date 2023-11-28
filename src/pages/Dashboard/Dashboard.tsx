@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
+import { onAuthStateChanged } from 'firebase/auth'
 
+import auth from '../../services/auth'
 import db from '../../services/database'
 
 import {
@@ -17,8 +19,6 @@ import {
   DashboardVestingValue,
   DashboardVestingValueLabel,
 } from './styles'
-import { onAuthStateChanged } from 'firebase/auth'
-import auth from '../../services/auth'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
@@ -48,6 +48,8 @@ export default function DashboardPage() {
         )
 
         return () => unsubscribe()
+      } else {
+        navigate('/sign-in')
       }
     })
   }, [])
